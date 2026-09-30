@@ -1,0 +1,54 @@
+@import 'tailwindcss';
+
+/* Tokens da identidade visual. Veja /design. */
+@theme {
+  /* Escala da marca, derivada da logo do DCQ (brand-500 = #5eaea1). */
+  --color-brand-50: oklch(97.5% 0.014 182);
+  --color-brand-100: oklch(94.5% 0.028 182);
+  --color-brand-200: oklch(89% 0.048 182);
+  --color-brand-300: oklch(82% 0.066 182);
+  --color-brand-400: oklch(75% 0.078 182);
+  --color-brand-500: oklch(69.6% 0.082 182);
+  --color-brand-600: oklch(59% 0.076 182);
+  --color-brand-700: oklch(49% 0.066 182);
+  --color-brand-800: oklch(39% 0.052 182);
+  --color-brand-900: oklch(30% 0.04 182);
+  --color-brand-950: oklch(21% 0.028 182);
+
+  /* Neutros levemente tingidos com o matiz da marca. */
+  --color-surface: oklch(96.8% 0.006 182);
+  --color-panel: oklch(99.3% 0.002 182);
+  --color-ink: oklch(20% 0.012 182);
+  --color-muted: oklch(50% 0.02 182);
+  --color-line: oklch(87% 0.014 182);
+
+  /* Semânticas. primary usa brand-700 para texto branco ter contraste AA. */
+  --color-primary: var(--color-brand-700);
+  --color-primary-strong: var(--color-brand-800);
+  --color-accent: oklch(72% 0.15 60);
+  --color-success: oklch(60% 0.15 145);
+  --color-danger: oklch(57% 0.19 27);
+
+  /* Títulos: serifa editorial com eixo de tamanho óptico (opsz). Corpo: fonte do sistema. */
+  --font-serif: 'Newsreader Variable', 'Times New Roman', serif;
+  --font-sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, 'JetBrains Mono', Consolas, monospace;
+}
+
+body {
+  @apply bg-surface text-ink font-sans antialiased;
+}
+
+/* Grade quadriculada que some em direção ao fim da tela. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--color-panel) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-panel) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom, black, transparent 98%);
+}
